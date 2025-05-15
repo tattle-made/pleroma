@@ -9,3 +9,6 @@ test/
 
 # Required to get version
 !.git
+
+/uploads/*
+.docker-env

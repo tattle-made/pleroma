@@ -1,0 +1,33 @@
+services:
+  db:
+    image: postgres:14.10
+    container_name: db
+    restart: always
+    environment:
+      - POSTGRES_USER=pleroma
+      - POSTGRES_PASSWORD=weak_password
+      - POSTGRES_DB=pleroma
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      interval: 1s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - ~/data/pleroma/postgres:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+  db_gui:
+    image: adminer
+    container_name: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  pleroma:
+    build: .
+    container_name: pleroma
+    env_file:
+      - .docker-env
+    ports: 
+      - 4000:4000
