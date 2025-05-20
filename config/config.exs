@@ -814,8 +814,16 @@ config :pleroma, :frontends,
       "build_url" => "https://pl.mkljczk.pl/pl-fe.zip",
       "ref" => "develop",
       "build_dir" => "."
-    }
+    },
   }
+  # primary: %{
+  #   "name" => "soapbox",
+  #   "ref" => "v3.0.0-beta.1"
+  # },
+  # admin: %{
+  #   "name" => "pleroma-fe",
+  #   "ref" => "develop"
+  # }
 
 config :pleroma, :web_cache_ttl,
   activity_pub: nil,
